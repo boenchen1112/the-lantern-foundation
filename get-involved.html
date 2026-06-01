@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Involved | The Lantern Foundation</title>
+  <meta name="description" content="Volunteer with The Lantern Foundation. Join BrightNotes, LightAid, or HeartLink and become part of the change.">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="enhance.css">
+  <style>
+    /* PATHS */
+    #paths { background: var(--dark-2); }
+    .paths-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: var(--dark-3); margin-top: 3rem; }
+    .path-card {
+      background: var(--dark-2); padding: clamp(2rem,4vw,2.75rem);
+      display: flex; flex-direction: column; gap: .9rem;
+      transition: background .25s; position: relative; overflow: hidden;
+    }
+    .path-card::before {
+      content: attr(data-num); position: absolute; top: -1rem; right: 1.5rem;
+      font-family: var(--font-serif); font-size: 7rem; font-weight: 900;
+      color: rgba(232,164,32,.06); line-height: 1; pointer-events: none; user-select: none;
+    }
+    .path-card:hover { background: var(--dark-card); }
+    .path-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(191,136,12,.35); }
+    .path-name { font-family: var(--font-serif); font-size: clamp(1.3rem,2.2vw,1.7rem); font-weight: 700; color: var(--cream); }
+    .path-role { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-bright); }
+    .path-desc { font-size: .9rem; color: var(--text-muted); line-height: 1.72; flex: 1; }
+    .path-skills { margin-top: .5rem; }
+    .path-skills p { font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: .5rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .skill-tag { font-size: .72rem; color: var(--text-muted); border: 1px solid var(--dark-3); padding: .25em .7em; }
+
+    /* FORM */
+    #apply { background: var(--dark); }
+    .apply-wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(3rem,7vw,7rem); align-items: start; }
+    .apply-info p { font-size: .97rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.2rem; }
+    .apply-info .info-item { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.25rem; }
+    .apply-info .info-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); margin-top: .65rem; flex-shrink: 0; }
+    .apply-info .info-item p { margin: 0; font-size: .93rem; }
+
+    /* FORM STYLES */
+    .vol-form { background: var(--dark-2); padding: clamp(2rem,4vw,3rem); border-top: 2px solid var(--gold); }
+    .form-title { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 700; color: var(--cream); margin-bottom: .4rem; }
+    .form-sub { font-size: .85rem; color: var(--text-muted); margin-bottom: 2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+    .form-label { font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+    .form-input, .form-select, .form-textarea {
+      background: var(--dark-3); border: 1px solid rgba(255,255,255,.07);
+      color: var(--text-light); font-family: var(--font-sans); font-size: .9rem;
+      padding: .75rem 1rem; transition: border-color .2s, background .2s; outline: none;
+      width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--gold); background: rgba(191,136,12,.06);
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-dim); }
+    .form-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath d='M1 3l4 4 4-4' stroke='%23857866' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+    .form-select option { background: var(--dark-2); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-checks { display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1rem; }
+    .form-check { display: flex; align-items: center; gap: .65rem; cursor: pointer; }
+    .form-check input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--gold-bright); cursor: pointer; flex-shrink: 0; }
+    .form-check span { font-size: .88rem; color: var(--text-muted); }
+    .form-submit { width: 100%; padding: 1rem; background: var(--gold-bright); border: none; color: var(--dark); font-family: var(--font-sans); font-size: .9rem; font-weight: 700; letter-spacing: .06em; cursor: pointer; transition: background .2s, transform .15s; margin-top: .5rem; }
+    .form-submit:hover { background: var(--gold-pale); transform: translateY(-1px); }
+    .form-submit:active { transform: none; }
+
+    /* THANK YOU STATE */
+    .thankyou-state { display: none; text-align: center; padding: 3rem 2rem; }
+    .thankyou-state.visible { display: block; }
+    .vol-form.submitted .form-inner { display: none; }
+    .thankyou-icon { width: 56px; height: 56px; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+    .thankyou-title { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700; color: var(--cream); margin-bottom: .75rem; }
+    .thankyou-sub { font-size: .95rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* CONTACT */
+    #contact { background: var(--dark-2); border-top: 1px solid var(--dark-3); }
+    .contact-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
+    .contact-card { padding: 2rem; background: var(--dark-3); text-align: center; }
+    .contact-card svg { margin: 0 auto 1rem; opacity: .7; }
+    .contact-card h4 { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 600; color: var(--cream); margin-bottom: .4rem; }
+    .contact-card a, .contact-card p { font-size: .87rem; color: var(--text-muted); text-decoration: none; transition: color .2s; word-break: break-all; }
+    .contact-card a:hover { color: var(--gold-bright); }
+
+    @media(max-width:900px){ .paths-grid{grid-template-columns:1fr 1fr;} .contact-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:768px){
+      .paths-grid{grid-template-columns:1fr;}
+      .apply-wrap{grid-template-columns:1fr;}
+      .form-row{grid-template-columns:1fr;}
+      .contact-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <svg width="26" height="34" viewBox="0 0 26 34" fill="none" aria-hidden="true"><path d="M9 5 Q13 1 17 5" stroke="#E8A420" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="6" y="5" width="14" height="2.5" rx="1" fill="#E8A420" opacity="0.8"/><path d="M5 8.5 L3 13 L3 24 L5 27.5 L21 27.5 L23 24 L23 13 L21 8.5 Z" fill="rgba(232,164,32,0.1)" stroke="#E8A420" stroke-width="1.3"/><ellipse cx="13" cy="18" rx="6" ry="7" fill="rgba(232,164,32,0.22)"/><rect x="8" y="27.5" width="10" height="3" rx="1.5" fill="#E8A420" opacity="0.8"/></svg>
+      <div class="nav-logo-words"><strong>The Lantern Foundation</strong><em>天燈之夢</em></div>
+    </a>
+    <ul class="nav-items">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dd"><button class="nav-dd-btn">About Us <svg viewBox="0 0 10 10" fill="none"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="nav-dd-panel"><a href="about.html">Our Story</a><a href="about.html#team">Our Team</a></div></li>
+      <li><a href="our-work.html">Our Work</a></li>
+      <li><a href="the-problem.html">The Problem</a></li>
+      <li class="nav-dd"><button class="nav-dd-btn">News &amp; Events <svg viewBox="0 0 10 10" fill="none"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="nav-dd-panel"><a href="news-events.html">All Events</a><a href="news-events.html#hunger-game">H.U.N.G.E.R. Game</a><a href="news-events.html#love-lit">A Love-Lit Christmas</a></div></li>
+    </ul>
+    <div class="nav-end">
+      <a href="get-involved.html" class="btn btn-gold btn-sm btn-nav-cta">Get Involved</a>
+      <button class="nav-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mob" role="dialog" aria-modal="true">
+  <ul class="nav-mob-list">
+    <li><a href="index.html">Home</a></li>
+    <li><span>About Us</span><ul class="nav-mob-sub"><li><a href="about.html">Our Story</a></li><li><a href="about.html#team">Our Team</a></li></ul></li>
+    <li><a href="our-work.html">Our Work</a></li><li><a href="the-problem.html">The Problem</a></li>
+    <li><a href="news-events.html">News &amp; Events</a></li><li><a href="get-involved.html">Get Involved</a></li>
+  </ul>
+  <div class="nav-mob-footer"><a href="get-involved.html" class="btn btn-gold">Become a Volunteer</a></div>
+</div>
+
+<!-- PAGE HERO -->
+<header class="page-hero lantern-host">
+  <canvas class="lantern-canvas" data-count="18" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <p class="t-label reveal">Get Involved</p>
+    <span class="gold-bar" style="margin-top:1rem" aria-hidden="true"></span>
+    <h1 class="t-h1 reveal d1" style="max-width:20ch; margin-bottom:1.25rem">Join the lanterns.<br>Be the change.</h1>
+    <p class="t-lead reveal d2" style="max-width:52ch">There is a place for you here — whether you perform, coordinate, advocate, or simply show up. Three branches, many ways to contribute. Find yours.</p>
+  </div>
+</header>
+
+<!-- VOLUNTEER PATHS -->
+<section id="paths">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="t-label">Ways to Contribute</p>
+      <span class="gold-bar" style="margin-top:1rem"></span>
+      <h2 class="t-h2" style="max-width:32ch">Choose your path. Make your mark.</h2>
+    </div>
+    <div class="paths-grid">
+      <div class="path-card reveal" data-num="01">
+        <div class="path-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <p class="path-role">Branch 01</p>
+        <h3 class="path-name">BrightNotes</h3>
+        <p class="path-desc">Perform, produce, and advocate. BrightNotes volunteers help organize student concerts, prepare hospital performances, manage digital outreach, and translate artistic passion into fundraising impact.</p>
+        <div class="path-skills"><p>You might bring:</p><div class="skill-tags"><span class="skill-tag">Music</span><span class="skill-tag">Performance</span><span class="skill-tag">Event Planning</span><span class="skill-tag">Social Media</span><span class="skill-tag">Design</span></div></div>
+      </div>
+      <div class="path-card reveal d1" data-num="02">
+        <div class="path-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <p class="path-role">Branch 02</p>
+        <h3 class="path-name">LightAid</h3>
+        <p class="path-desc">Coordinate, report, and sustain. LightAid volunteers work directly on medical funding coordination, sponsor relations, and transparency reporting — ensuring every donated dollar reaches a child who needs it.</p>
+        <div class="path-skills"><p>You might bring:</p><div class="skill-tags"><span class="skill-tag">Research</span><span class="skill-tag">Communication</span><span class="skill-tag">Finance</span><span class="skill-tag">Reporting</span><span class="skill-tag">Partnerships</span></div></div>
+      </div>
+      <div class="path-card reveal d2" data-num="03">
+        <div class="path-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <p class="path-role">Branch 03</p>
+        <h3 class="path-name">HeartLink</h3>
+        <p class="path-desc">Visit, accompany, and sustain. HeartLink volunteers undergo training then commit to consistent visits — becoming a steady presence in the lives of children who need to know that someone shows up.</p>
+        <div class="path-skills"><p>You might bring:</p><div class="skill-tags"><span class="skill-tag">Empathy</span><span class="skill-tag">Consistency</span><span class="skill-tag">Teaching</span><span class="skill-tag">Storytelling</span><span class="skill-tag">Care</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT BAND -->
+<section class="impact-band" style="padding:0">
+  <image-slot id="involved-impact" shape="rect" placeholder="Wide photo — volunteers in action, a concert, or a group shot"></image-slot>
+  <div class="impact-overlay"></div>
+  <div class="impact-content reveal">
+    <p class="t-label">You + Us</p>
+    <h2>The brightest light is the one we build together.</h2>
+    <p>No experience required — only genuine care and a willingness to show up.</p>
+  </div>
+</section>
+
+<!-- APPLICATION FORM -->
+<section id="apply">
+  <div class="wrap">
+    <div class="apply-wrap">
+      <div class="reveal">
+        <p class="t-label">Apply Now</p>
+        <span class="gold-bar" style="margin-top:1rem"></span>
+        <h2 class="t-h2" style="margin-bottom:1.5rem">We'd love to<br>have you.</h2>
+        <div class="apply-info">
+          <p>No prior experience is required — only genuine care and willingness to commit. We provide training, structure, and a community of like-minded students.</p>
+          <div class="info-item"><div class="info-dot"></div><p>All applicants will receive a response within 5 business days.</p></div>
+          <div class="info-item"><div class="info-dot"></div><p>HeartLink volunteers complete a brief orientation before their first visit.</p></div>
+          <div class="info-item"><div class="info-dot"></div><p>Open to students across all schools and disciplines.</p></div>
+          <div class="info-item"><div class="info-dot"></div><p>You may apply to more than one branch — tell us in your message.</p></div>
+        </div>
+      </div>
+
+      <div class="vol-form reveal d2" id="vol-form-wrap">
+        <div class="form-inner">
+          <p class="form-title">Volunteer Application</p>
+          <p class="form-sub">Fill in your details and we'll be in touch.</p>
+          <form id="vol-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="f-name">Full Name *</label>
+                <input class="form-input" id="f-name" type="text" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="f-email">Email *</label>
+                <input class="form-input" id="f-email" type="email" placeholder="your@email.com" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="f-school">School / Organisation</label>
+                <input class="form-input" id="f-school" type="text" placeholder="e.g. Chingshin Academy">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="f-branch">Primary Interest *</label>
+                <select class="form-select" id="f-branch" required>
+                  <option value="" disabled selected>Select a branch</option>
+                  <option value="brightnotes">BrightNotes — Music &amp; Events</option>
+                  <option value="lightaid">LightAid — Healthcare Funding</option>
+                  <option value="heartlink">HeartLink — Companionship Visits</option>
+                  <option value="all">Open to All Branches</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">I am interested in</label>
+              <div class="form-checks">
+                <label class="form-check"><input type="checkbox" name="interest" value="volunteer"><span>Volunteering directly</span></label>
+                <label class="form-check"><input type="checkbox" name="interest" value="skills"><span>Contributing a specific skill (music, design, finance, etc.)</span></label>
+                <label class="form-check"><input type="checkbox" name="interest" value="corporate"><span>Corporate sponsorship / partnership</span></label>
+                <label class="form-check"><input type="checkbox" name="interest" value="collab"><span>Collaboration between organisations</span></label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="f-msg">Why do you want to get involved? *</label>
+              <textarea class="form-textarea" id="f-msg" placeholder="Tell us a little about yourself and why this matters to you..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">Submit Application →</button>
+          </form>
+        </div>
+        <div class="thankyou-state" id="thankyou">
+          <div class="thankyou-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="1.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <p class="thankyou-title">Application received.</p>
+          <p class="thankyou-sub">Thank you for stepping forward. We will review your application and reach out within 5 business days.<br><br>In the meantime, follow us on Instagram for updates.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="t-label">Other Ways to Connect</p>
+      <span class="gold-bar" style="margin-top:1rem"></span>
+      <h2 class="t-h2">Reach us directly.</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card reveal">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <h4>Email</h4>
+        <a href="mailto:thelanternfoundation24@gmail.com">thelanternfoundation24@gmail.com</a>
+      </div>
+      <div class="contact-card reveal d1">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        <h4>Instagram</h4>
+        <a href="https://www.instagram.com/thelanternfoundation24/" target="_blank" rel="noopener">@thelanternfoundation24</a>
+      </div>
+      <div class="contact-card reveal d2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <h4>LINE Community</h4>
+        <a href="https://line.me/ti/g/LG9Eg6JZxH" target="_blank" rel="noopener">Join our LINE group</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-body">
+    <div class="foot-brand"><a href="index.html" class="foot-brand-logo"><svg width="22" height="29" viewBox="0 0 26 34" fill="none" aria-hidden="true"><path d="M9 5 Q13 1 17 5" stroke="#E8A420" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="6" y="5" width="14" height="2.5" rx="1" fill="#E8A420" opacity="0.8"/><path d="M5 8.5 L3 13 L3 24 L5 27.5 L21 27.5 L23 24 L23 13 L21 8.5 Z" fill="rgba(232,164,32,0.1)" stroke="#E8A420" stroke-width="1.3"/><ellipse cx="13" cy="18" rx="6" ry="7" fill="rgba(232,164,32,0.22)"/><rect x="8" y="27.5" width="10" height="3" rx="1.5" fill="#E8A420" opacity="0.8"/></svg><strong>The Lantern Foundation</strong></a><p>A student-founded nonprofit in Taipei empowering youth and supporting stateless children through structured, meaningful action.</p><span class="foot-brand-cn">天燈之夢 &ensp;·&ensp; Est. 2024</span></div>
+    <div class="foot-col"><h4>Navigate</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="the-problem.html">The Problem</a></li><li><a href="news-events.html">News &amp; Events</a></li><li><a href="get-involved.html">Get Involved</a></li></ul></div>
+    <div class="foot-col"><h4>Connect</h4><a class="foot-email" href="mailto:thelanternfoundation24@gmail.com">thelanternfoundation24@gmail.com</a><div class="foot-social"><a href="https://www.instagram.com/thelanternfoundation24/" target="_blank" rel="noopener">IG</a><a href="https://line.me/ti/g/LG9Eg6JZxH" target="_blank" rel="noopener">LINE</a><a href="https://www.twhhf.org/" target="_blank" rel="noopener">HHF</a></div></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 THE LANTERN FOUNDATION &ensp;·&ensp; 天燈之夢</p><p>WEBSITE BY DANIEL CHEN</p></div>
+</footer>
+
+<script src="image-slot.js"></script>
+<script src="nav.js"></script>
+<script src="interactive.js"></script>
+<script>
+document.getElementById('vol-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var name = document.getElementById('f-name').value.trim();
+  var email = document.getElementById('f-email').value.trim();
+  var branch = document.getElementById('f-branch').value;
+  var msg = document.getElementById('f-msg').value.trim();
+  if (!name || !email || !branch || !msg) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+  var wrap = document.getElementById('vol-form-wrap');
+  wrap.classList.add('submitted');
+  document.getElementById('thankyou').classList.add('visible');
+});
+</script>
+</body>
+</html>

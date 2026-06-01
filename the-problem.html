@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Problem | The Lantern Foundation</title>
+  <meta name="description" content="Children born to undocumented migrant workers in Taiwan grow up without legal identity, healthcare, or stable education. Learn about the problem The Lantern Foundation is addressing.">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="enhance.css">
+  <style>
+    /* PROBLEM HERO — extra dramatic */
+    #prob-hero {
+      min-height: 70vh; display: flex; align-items: flex-end;
+      padding-top: var(--nav-h); padding-bottom: clamp(4rem,8vw,7rem);
+      background: var(--dark); position: relative; overflow: hidden;
+    }
+    #prob-hero::before {
+      content: ''; position: absolute; inset: 0; z-index: 1;
+      background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(191,136,12,.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .prob-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+    .prob-hero-veil {
+      position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background: linear-gradient(180deg, rgba(11,10,8,.80) 0%, rgba(11,10,8,.60) 48%, rgba(11,10,8,.93) 100%);
+    }
+    .prob-hero-tag {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-size: .68rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold-bright); border: 1px solid rgba(232,164,32,.3);
+      padding: .4em 1em; margin-bottom: 1.75rem;
+    }
+
+    /* CONTEXT */
+    #context { background: var(--dark-2); }
+    .context-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(3rem,6vw,6rem); align-items: start; }
+    .context-body p { font-size: .97rem; color: var(--text-muted); line-height: 1.82; margin-bottom: 1.1rem; }
+    .context-body p strong { color: var(--text-light); font-weight: 600; }
+    .context-stat {
+      background: var(--dark-3); padding: 2rem; border-top: 2px solid var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .context-stat-num {
+      font-family: var(--font-serif); font-size: clamp(2.5rem,4vw,3.5rem); font-weight: 900;
+      color: var(--gold-bright); display: block; line-height: 1; margin-bottom: .4rem;
+    }
+    .context-stat p { font-size: .84rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+
+    /* CHALLENGES */
+    #challenges { background: var(--dark); }
+    .challenges-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5px; background: var(--dark-3); margin-top: 3rem; }
+    .challenge-card { background: var(--dark); padding: clamp(2rem,4vw,2.75rem); }
+    .challenge-card:hover { background: var(--dark-card); }
+    .challenge-num { font-size: .62rem; font-weight: 700; letter-spacing: .22em; color: var(--gold-bright); margin-bottom: 1rem; display: block; }
+    .challenge-icon { margin-bottom: 1.25rem; }
+    .challenge-title { font-family: var(--font-serif); font-size: clamp(1.2rem,2vw,1.55rem); font-weight: 700; color: var(--cream); margin-bottom: .75rem; line-height: 1.2; }
+    .challenge-body { font-size: .9rem; color: var(--text-muted); line-height: 1.75; }
+
+    /* HUMAN STORY */
+    #human-story { background: var(--dark-2); }
+    .human-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,7vw,7rem); align-items: center; }
+    .human-pullquote {
+      font-family: var(--font-serif); font-size: clamp(1.15rem,2.5vw,1.7rem);
+      font-weight: 400; font-style: italic; line-height: 1.55;
+      color: var(--text-light); margin-bottom: 2rem;
+    }
+    .human-img { aspect-ratio: 5/6; position: relative; overflow: hidden; }
+    .human-img image-slot { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+    /* RESPONSE */
+    #response { background: var(--dark); }
+    .response-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 3rem; }
+    .response-card { padding: 2rem; border-top: 2px solid var(--dark-3); transition: border-color .25s; }
+    .response-card:hover { border-top-color: var(--gold); }
+    .response-card h4 { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 700; color: var(--cream); margin-bottom: .65rem; }
+    .response-card p { font-size: .88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem; }
+    .response-card a { color: var(--gold-bright); font-size: .8rem; font-weight: 600; text-decoration: none; letter-spacing: .04em; }
+    .response-card a:hover { color: var(--gold-pale); }
+
+    @media(max-width:900px){ .challenges-grid{grid-template-columns:1fr 1fr;} .response-row{grid-template-columns:1fr 1fr;} }
+    @media(max-width:768px){
+      .context-grid{grid-template-columns:1fr;} .human-grid{grid-template-columns:1fr;}
+      .human-img{aspect-ratio:16/9;order:-1;}
+      .challenges-grid,.response-row{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <svg width="26" height="34" viewBox="0 0 26 34" fill="none" aria-hidden="true"><path d="M9 5 Q13 1 17 5" stroke="#E8A420" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="6" y="5" width="14" height="2.5" rx="1" fill="#E8A420" opacity="0.8"/><path d="M5 8.5 L3 13 L3 24 L5 27.5 L21 27.5 L23 24 L23 13 L21 8.5 Z" fill="rgba(232,164,32,0.1)" stroke="#E8A420" stroke-width="1.3"/><ellipse cx="13" cy="18" rx="6" ry="7" fill="rgba(232,164,32,0.22)"/><rect x="8" y="27.5" width="10" height="3" rx="1.5" fill="#E8A420" opacity="0.8"/></svg>
+      <div class="nav-logo-words"><strong>The Lantern Foundation</strong><em>天燈之夢</em></div>
+    </a>
+    <ul class="nav-items">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dd"><button class="nav-dd-btn">About Us <svg viewBox="0 0 10 10" fill="none"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="nav-dd-panel"><a href="about.html">Our Story</a><a href="about.html#team">Our Team</a></div></li>
+      <li><a href="our-work.html">Our Work</a></li>
+      <li><a href="the-problem.html" class="current">The Problem</a></li>
+      <li class="nav-dd"><button class="nav-dd-btn">News &amp; Events <svg viewBox="0 0 10 10" fill="none"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="nav-dd-panel"><a href="news-events.html">All Events</a><a href="news-events.html#hunger-game">H.U.N.G.E.R. Game</a><a href="news-events.html#love-lit">A Love-Lit Christmas</a></div></li>
+    </ul>
+    <div class="nav-end">
+      <a href="get-involved.html" class="btn btn-gold btn-sm btn-nav-cta">Get Involved</a>
+      <button class="nav-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mob" role="dialog" aria-modal="true">
+  <ul class="nav-mob-list">
+    <li><a href="index.html">Home</a></li>
+    <li><span>About Us</span><ul class="nav-mob-sub"><li><a href="about.html">Our Story</a></li><li><a href="about.html#team">Our Team</a></li></ul></li>
+    <li><a href="our-work.html">Our Work</a></li><li><a href="the-problem.html">The Problem</a></li>
+    <li><a href="news-events.html">News &amp; Events</a></li><li><a href="get-involved.html">Get Involved</a></li>
+  </ul>
+  <div class="nav-mob-footer"><a href="get-involved.html" class="btn btn-gold">Become a Volunteer</a></div>
+</div>
+
+<!-- HERO -->
+<header id="prob-hero">
+  <image-slot id="prob-hero-bg" class="prob-hero-bg" shape="rect" placeholder="Optional backdrop photo — atmospheric, will be darkened"></image-slot>
+  <div class="prob-hero-veil" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="prob-hero-tag reveal">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Understanding the Crisis
+    </div>
+    <h1 class="t-display reveal d1" style="max-width:16ch; margin-bottom:1.5rem">Children Without a Country.</h1>
+    <p class="t-lead reveal d2" style="max-width:52ch">Across Taiwan, children born to undocumented migrant workers are growing up without legal identity, healthcare access, or stable education. Their lives are shaped not by a single crisis, but by prolonged uncertainty.</p>
+  </div>
+</header>
+
+<!-- CONTEXT -->
+<section id="context">
+  <div class="wrap">
+    <div class="context-grid">
+      <div class="context-body reveal">
+        <p class="t-label">The Situation</p>
+        <span class="gold-bar" style="margin-top:1rem"></span>
+        <p>Taiwan is home to a large population of migrant workers — many of whom are undocumented. When children are born to these families, they inherit their parents' legal invisibility. Without a recognized nationality, they exist in a grey zone that the law was not designed to address.</p>
+        <p>These children are not the product of any failure on their part. They were born into circumstances beyond their control. Yet the consequences fall entirely on them: <strong>no national ID, no access to public health insurance, no guaranteed right to education.</strong></p>
+        <p>A single illness — a broken bone, a fever that doesn't pass — can push a family into devastating debt. Without the NHI card that every other child in Taiwan receives at birth, medical costs must be paid entirely out of pocket.</p>
+        <p>This is not a distant problem. These children live among us. They grow up in the same cities, on the same streets — but without the safety net that citizenship provides.</p>
+      </div>
+      <div class="reveal d2">
+        <div class="context-stat">
+          <span class="context-stat-num">60+</span>
+          <p>Volunteers across schools currently engaged in active support programs for stateless children in Taiwan.</p>
+        </div>
+        <div class="context-stat">
+          <span class="context-stat-num">NTD 100K+</span>
+          <p>Funds raised through student-led events and sponsorships to cover medical costs and essential needs.</p>
+        </div>
+        <div class="context-stat" style="margin-bottom:0">
+          <span class="context-stat-num">3</span>
+          <p>Dedicated program branches — BrightNotes, LightAid, and HeartLink — each targeting a distinct dimension of this crisis.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGES -->
+<section id="challenges">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="t-label">Three Core Challenges</p>
+      <span class="gold-bar" style="margin-top:1rem"></span>
+      <h2 class="t-h2" style="max-width:32ch">Without nationality, the most basic rights are denied.</h2>
+    </div>
+    <div class="challenges-grid">
+      <div class="challenge-card reveal">
+        <span class="challenge-num">01</span>
+        <div class="challenge-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <h3 class="challenge-title">No Legal Identity</h3>
+        <p class="challenge-body">Without a birth registration or national ID, these children do not officially exist in the eyes of the state. This invisibility compounds every other challenge they face — from enrolling in school to accessing any public service.</p>
+      </div>
+      <div class="challenge-card reveal d1">
+        <span class="challenge-num">02</span>
+        <div class="challenge-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <h3 class="challenge-title">No Healthcare Access</h3>
+        <p class="challenge-body">Taiwan's National Health Insurance system is one of the best in the world — but it requires legal nationality to access. Stateless children are entirely excluded. A routine illness can become a financial emergency. Chronic conditions go unmanaged. Preventable suffering becomes unavoidable.</p>
+      </div>
+      <div class="challenge-card reveal d2">
+        <span class="challenge-num">03</span>
+        <div class="challenge-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <h3 class="challenge-title">No Stable Education</h3>
+        <p class="challenge-body">Education pathways for undocumented children are uncertain and inconsistent. Without formal enrollment rights, their schooling depends on the goodwill of individual institutions — creating an education that is always provisional and never guaranteed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HUMAN STORY -->
+<section id="human-story">
+  <div class="wrap">
+    <div class="human-grid">
+      <div class="reveal">
+        <p class="t-label">A Human Reality</p>
+        <span class="gold-bar" style="margin-top:1rem"></span>
+        <p class="human-pullquote">"Their lives were shaped not by a single crisis, but by prolonged uncertainty."</p>
+        <p style="color:var(--text-muted);font-size:.97rem;line-height:1.8;margin-bottom:1.5rem">When our founders first visited the children's home, they didn't encounter a policy problem. They encountered children — children who laughed when music played, who wanted to read, who reached for connection.</p>
+        <p style="color:var(--text-muted);font-size:.97rem;line-height:1.8;margin-bottom:2rem">The issue isn't abstract. These children live close to us. Their need is real, and it is now. That is why The Lantern Foundation exists — not to theorize, but to act.</p>
+        <a href="about.html" class="btn btn-outline-gold">How We Responded</a>
+      </div>
+      <div class="human-img lb-wrap reveal d2">
+        <image-slot id="prob-human" shape="rect" placeholder="Children at home, candid community moment"></image-slot>
+        <button class="lb-btn" aria-label="Expand image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR RESPONSE -->
+<section id="response">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="t-label">Our Response</p>
+      <span class="gold-bar" style="margin-top:1rem"></span>
+      <h2 class="t-h2" style="max-width:30ch">Three branches. One shared mission.</h2>
+    </div>
+    <div class="response-row">
+      <div class="response-card reveal">
+        <h4>BrightNotes</h4>
+        <p>Student-led concerts and hospital performances that raise funds and raise awareness — using music as both a fundraising tool and a voice for change.</p>
+        <a href="our-work.html#brightnotes">Learn about BrightNotes →</a>
+      </div>
+      <div class="response-card reveal d1">
+        <h4>LightAid</h4>
+        <p>Stable, transparent medical funding coordinated with corporate sponsors — ensuring that no child faces a healthcare crisis alone because of their legal status.</p>
+        <a href="our-work.html#lightaid">Learn about LightAid →</a>
+      </div>
+      <div class="response-card reveal d2">
+        <h4>HeartLink</h4>
+        <p>A structured volunteer system that provides long-term companionship — because these children need more than resources. They need someone to show up, consistently.</p>
+        <a href="our-work.html#heartlink">Learn about HeartLink →</a>
+      </div>
+    </div>
+    <div style="margin-top:4rem;text-align:center" class="reveal">
+      <a href="get-involved.html" class="btn btn-gold">Join the Movement</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-body">
+    <div class="foot-brand"><a href="index.html" class="foot-brand-logo"><svg width="22" height="29" viewBox="0 0 26 34" fill="none" aria-hidden="true"><path d="M9 5 Q13 1 17 5" stroke="#E8A420" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="6" y="5" width="14" height="2.5" rx="1" fill="#E8A420" opacity="0.8"/><path d="M5 8.5 L3 13 L3 24 L5 27.5 L21 27.5 L23 24 L23 13 L21 8.5 Z" fill="rgba(232,164,32,0.1)" stroke="#E8A420" stroke-width="1.3"/><ellipse cx="13" cy="18" rx="6" ry="7" fill="rgba(232,164,32,0.22)"/><rect x="8" y="27.5" width="10" height="3" rx="1.5" fill="#E8A420" opacity="0.8"/></svg><strong>The Lantern Foundation</strong></a><p>A student-founded nonprofit in Taipei empowering youth and supporting stateless children through structured, meaningful action.</p><span class="foot-brand-cn">天燈之夢 &ensp;·&ensp; Est. 2024</span></div>
+    <div class="foot-col"><h4>Navigate</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="the-problem.html">The Problem</a></li><li><a href="news-events.html">News &amp; Events</a></li><li><a href="get-involved.html">Get Involved</a></li></ul></div>
+    <div class="foot-col"><h4>Connect</h4><a class="foot-email" href="mailto:thelanternfoundation24@gmail.com">thelanternfoundation24@gmail.com</a><div class="foot-social"><a href="https://www.instagram.com/thelanternfoundation24/" target="_blank" rel="noopener">IG</a><a href="https://line.me/ti/g/LG9Eg6JZxH" target="_blank" rel="noopener">LINE</a><a href="https://www.twhhf.org/" target="_blank" rel="noopener">HHF</a></div></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 THE LANTERN FOUNDATION &ensp;·&ensp; 天燈之夢</p><p>WEBSITE BY DANIEL CHEN</p></div>
+</footer>
+
+<script src="image-slot.js"></script>
+<script src="nav.js"></script>
+<script src="interactive.js"></script>
+</body>
+</html>

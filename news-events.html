@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News &amp; Events | The Lantern Foundation</title>
+  <meta name="description" content="Event reports and news from The Lantern Foundation — the H.U.N.G.E.R. Game and A Love-Lit Christmas.">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="enhance.css">
+  <style>
+    /* EVENT SECTIONS */
+    .event-section { scroll-margin-top: calc(var(--nav-h) + 20px); padding-block: var(--section-v); }
+    .event-section.alt { background: var(--dark-2); }
+
+    .event-header { margin-bottom: clamp(3rem,5vw,4.5rem); }
+    .event-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .event-tag {
+      font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--dark); background: var(--gold-bright); padding: .35em 1em;
+    }
+    .event-date { font-size: .78rem; letter-spacing: .1em; color: var(--text-muted); text-transform: uppercase; }
+    .event-title { font-family: var(--font-serif); font-size: clamp(1.8rem,4vw,3.2rem); font-weight: 700; color: var(--cream); line-height: 1.1; margin-bottom: .9rem; }
+    .event-subtitle { font-size: 1.05rem; font-style: italic; color: var(--text-muted); margin-bottom: 1.5rem; }
+
+    /* MAIN LAYOUT */
+    .event-layout { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(3rem,6vw,6rem); align-items: start; }
+    .event-img { aspect-ratio: 4/3; position: relative; overflow: hidden; margin-bottom: 1rem; }
+    .event-img image-slot { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .event-img-caption { font-size: .75rem; color: var(--text-dim); letter-spacing: .06em; }
+
+    .event-body p { font-size: .97rem; color: var(--text-muted); line-height: 1.82; margin-bottom: 1.1rem; }
+    .event-body p strong { color: var(--text-light); font-weight: 600; }
+
+    /* HIGHLIGHTS */
+    .event-highlights { margin-top: 2rem; }
+    .event-highlights h4 { font-family: var(--font-sans); font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+    .highlight-list { display: flex; flex-direction: column; gap: .75rem; }
+    .highlight-item { display: flex; gap: .85rem; align-items: flex-start; }
+    .hi-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold-bright); margin-top: .65rem; flex-shrink: 0; }
+    .highlight-item p { font-size: .9rem; color: var(--text-muted); line-height: 1.65; }
+    .highlight-item p strong { color: var(--cream); }
+
+    /* PHOTO GALLERY */
+    .event-gallery { margin-top: 2.5rem; }
+    .event-gallery h4 { font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+    .gallery-item { aspect-ratio: 1/1; position: relative; overflow: hidden; }
+    .gallery-item image-slot { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+    /* STATS STRIP */
+    .event-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--dark-3); margin-block: 2rem; }
+    .event-stat { background: var(--dark-card); padding: 1.25rem 1.5rem; text-align: center; }
+    .event-stat-num { font-family: var(--font-serif); font-size: clamp(1.8rem,3vw,2.5rem); font-weight: 900; color: var(--gold-bright); display: block; line-height: 1; margin-bottom: .3rem; }
+    .event-stat-lbl { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+
+    /* UPCOMING / CTA */
+    #stay-updated { background: var(--dark); border-top: 1px solid var(--dark-3); text-align: center; }
+    .su-inner { max-width: 46ch; margin-inline: auto; }
+    .su-inner h2 { font-family: var(--font-serif); font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 700; color: var(--cream); margin-bottom: 1rem; }
+    .su-inner p { color: var(--text-muted); font-size: .97rem; margin-bottom: 2rem; line-height: 1.7; }
+    .su-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    @media(max-width:768px){
+      .event-layout{grid-template-columns:1fr;}
+      .event-img{aspect-ratio:16/9;}
+      .gallery-grid{grid-template-columns:1fr 1fr;}
+      .event-stats{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <svg width="26" height="34" viewBox="0 0 26 34" fill="none" aria-hidden="true"><path d="M9 5 Q13 1 17 5" stroke="#E8A420" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="6" y="5" width="14" height="2.5" rx="1" fill="#E8A420" opacity="0.8"/><path d="M5 8.5 L3 13 L3 24 L5 27.5 L21 27.5 L23 24 L23 13 L21 8.5 Z" fill="rgba(232,164,32,0.1)" stroke="#E8A420" stroke-width="1.3"/><ellipse cx="13" cy="18" rx="6" ry="7" fill="rgba(232,164,32,0.22)"/><rect x="8" y="27.5" width="10" height="3" rx="1.5" fill="#E8A420" opacity="0.8"/></svg>
+      <div class="nav-logo-words"><strong>The Lantern Foundation</strong><em>天燈之夢</em></div>
+    </a>
+    <ul class="nav-items">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dd"><button class="nav-dd-btn">About Us <svg viewBox="0 0 10 10" fill="none"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="nav-dd-panel"><a href="about.html">Our Story</a><a href="about.html#team">Our Team</a></div></li>
+      <li><a href="our-work.html">Our Work</a></li>
+      <li><a href="the-problem.html">The Problem</a></li>
+      <li class="nav-dd"><button class="nav-dd-btn">News &amp; Events <svg viewBox="0 0 10 10" fill="none"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="nav-dd-panel"><a href="news-events.html" class="current">All Events</a><a href="news-events.html#hunger-game">H.U.N.G.E.R. Game</a><a href="news-events.html#love-lit">A Love-Lit Christmas</a></div></li>
+    </ul>
+    <div class="nav-end">
+      <a href="get-involved.html" class="btn btn-gold btn-sm btn-nav-cta">Get Involved</a>
+      <button class="nav-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mob" role="dialog" aria-modal="true">
+  <ul class="nav-mob-list">
+    <li><a href="index.html">Home</a></li>
+    <li><span>About Us</span><ul class="nav-mob-sub"><li><a href="about.html">Our Story</a></li><li><a href="about.html#team">Our Team</a></li></ul></li>
+    <li><a href="our-work.html">Our Work</a></li><li><a href="the-problem.html">The Problem</a></li>
+    <li><a href="news-events.html">News &amp; Events</a></li><li><a href="get-involved.html">Get Involved</a></li>
+  </ul>
+  <div class="nav-mob-footer"><a href="get-involved.html" class="btn btn-gold">Become a Volunteer</a></div>
+</div>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <div class="wrap">
+    <p class="t-label reveal">News &amp; Events</p>
+    <span class="gold-bar" style="margin-top:1rem" aria-hidden="true"></span>
+    <h1 class="t-h1 reveal d1" style="max-width:22ch; margin-bottom:1.25rem">Where our lanterns<br>meet the world.</h1>
+    <p class="t-lead reveal d2" style="max-width:52ch">Every event is a bridge — between students and communities, between awareness and action. Read the reports from our past events below.</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:2rem" class="reveal d3">
+      <a href="#hunger-game" class="btn btn-outline-gold btn-sm">H.U.N.G.E.R. Game ↓</a>
+      <a href="#love-lit" class="btn btn-outline btn-sm">A Love-Lit Christmas ↓</a>
+    </div>
+  </div>
+</header>
+
+<!-- H.U.N.G.E.R. GAME -->
+<section id="hunger-game" class="event-section" data-screen-label="HUNGER Game Event">
+  <div class="wrap">
+    <div class="event-header reveal">
+      <div class="event-meta">
+        <span class="event-tag">Event Report</span>
+        <span class="event-date">BrightNotes &ensp;·&ensp; 2025</span>
+      </div>
+      <h2 class="event-title">The H.U.N.G.E.R. Game</h2>
+      <p class="event-subtitle">A student-led fundraising event that turned compassion into action.</p>
+    </div>
+
+    <div class="event-layout">
+      <div class="reveal">
+        <div class="event-img lb-wrap">
+          <image-slot id="event-hunger-main" shape="rect" placeholder="H.U.N.G.E.R. Game main event photo"></image-slot>
+          <button class="lb-btn" aria-label="Expand image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button>
+        </div>
+        <p class="event-img-caption">H.U.N.G.E.R. Game — Event Photo</p>
+
+        <div class="event-gallery" style="margin-top:1.75rem">
+          <h4>Event Gallery</h4>
+          <div class="gallery-grid" data-lightbox-group>
+            <div class="gallery-item lb-wrap"><image-slot id="event-hunger-g1" shape="rect" placeholder="Event photo 1"></image-slot><button class="lb-btn" aria-label="Expand image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button></div>
+            <div class="gallery-item lb-wrap"><image-slot id="event-hunger-g2" shape="rect" placeholder="Event photo 2"></image-slot><button class="lb-btn" aria-label="Expand image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button></div>
+            <div class="gallery-item lb-wrap"><image-slot id="event-hunger-g3" shape="rect" placeholder="Event photo 3"></image-slot><button class="lb-btn" aria-label="Expand image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal d2">
+        <div class="event-body">
+          <p>The H.U.N.G.E.R. Game was a BrightNotes flagship event designed to raise both funds and awareness for stateless children living in Taiwan. Through an innovative format combining performance, competition, and community challenge, participants engaged directly with the issues these children face every day.</p>
+          <p>The event drew students from multiple schools and communities, channeling competitive energy into purposeful fundraising. Every admission, every challenge completed, and every donation went directly toward supporting the children The Lantern Foundation serves.</p>
+          <p>More than a fundraiser, the H.U.N.G.E.R. Game was an act of solidarity — a reminder that the discomfort of acknowledging a problem is nothing compared to the discomfort of living it.</p>
+        </div>
+
+        <div class="event-stats reveal d1">
+          <div class="event-stat"><span class="event-stat-num" data-count="60" data-suffix="+">0</span><p class="event-stat-lbl">Participants</p></div>
+          <div class="event-stat"><span class="event-stat-num" data-count="1" data-suffix=" Day">0</span><p class="event-stat-lbl">Duration</p></div>
+          <div class="event-stat"><span class="event-stat-num" data-count="100" data-prefix="NTD " data-suffix="K+">0</span><p class="event-stat-lbl">Raised</p></div>
+        </div>
+
+        <div class="event-highlights reveal d2">
+          <h4>Event Highlights</h4>
+          <div class="highlight-list">
+            <div class="highlight-item"><div class="hi-dot"></div><p><strong>Student-led production</strong> — every aspect of the event was organized and run by volunteers.</p></div>
+            <div class="highlight-item"><div class="hi-dot"></div><p><strong>Community challenges</strong> that connected participants to the lived reality of food insecurity and statelessness.</p></div>
+            <div class="highlight-item"><div class="hi-dot"></div><p><strong>Direct fundraising</strong> — all proceeds channeled through LightAid to cover medical needs.</p></div>
+            <div class="highlight-item"><div class="hi-dot"></div><p><strong>Cross-school participation</strong> — bringing together students from across Taipei.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A LOVE-LIT CHRISTMAS -->
+<section id="love-lit" class="event-section alt" data-screen-label="Love-Lit Christmas Event">
+  <div class="wrap">
+    <div class="event-header reveal">
+      <div class="event-meta">
+        <span class="event-tag">Event Report</span>
+        <span class="event-date">BrightNotes &ensp;·&ensp; HeartLink &ensp;·&ensp; December 2025</span>
+      </div>
+      <h2 class="event-title">A Love-Lit Christmas</h2>
+      <p class="event-subtitle">A concert of warmth, music, and light for the children we serve.</p>
+    </div>
+
+    <div class="event-layout" style="direction:ltr">
+      <div class="reveal d2" style="order:2">
+        <div class="event-img lb-wrap">
+          <image-slot id="event-christmas-main" shape="rect" placeholder="Love-Lit Christmas concert photo"></image-slot>
+          <button class="lb-btn" aria-label="Expand image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button>
+        </div>
+        <p class="event-img-caption">A Love-Lit Christmas — Concert Photo</p>
+
+        <div class="event-gallery" style="margin-top:1.75rem">
+          <h4>Event Gallery</h4>
+          <div class="gallery-grid" data-lightbox-group>
+            <div class="gallery-item lb-wrap"><image-slot id="event-xmas-g1" shape="rect" placeholder="Concert photo 1"></image-slot><button class="lb-btn" aria-label="Expand image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button></div>
+            <div class="gallery-item lb-wrap"><image-slot id="event-xmas-g2" shape="rect" placeholder="Concert photo 2"></image-slot><button class="lb-btn" aria-label="Expand image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button></div>
+            <div class="gallery-item lb-wrap"><image-slot id="event-xmas-g3" shape="rect" placeholder="Children at event photo"></image-slot><button class="lb-btn" aria-label="Expand image"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal" style="order:1">
+        <div class="event-body">
+          <p>A Love-Lit Christmas was The Lantern Foundation's most intimate event of the year — a student-performed Christmas concert held specifically for the stateless children and their caregivers in the community homes we serve.</p>
+          <p>The CS Music Club from Chingshin Academy led the performances, filling the room with carols, original compositions, and music that transcended language. For many of the children in attendance, it was their first experience of a live concert held in their honor.</p>
+          <p>The event brought together BrightNotes and HeartLink in a joint effort — pairing musical performance with the sustained presence and care that defines HeartLink's approach. It was not just a concert. It was a statement: <strong>you are seen, and you are loved.</strong></p>
+        </div>
+
+        <div class="event-stats reveal d1">
+          <div class="event-stat"><span class="event-stat-num" data-count="30" data-suffix="+">0</span><p class="event-stat-lbl">Children Attended</p></div>
+          <div class="event-stat"><span class="event-stat-num" data-count="2" data-suffix=" Branches">0</span><p class="event-stat-lbl">Collaborated</p></div>
+          <div class="event-stat"><span class="event-stat-num" data-count="1" data-suffix=" Eve">0</span><p class="event-stat-lbl">Christmas</p></div>
+        </div>
+
+        <div class="event-highlights reveal d2">
+          <h4>Event Highlights</h4>
+          <div class="highlight-list">
+            <div class="highlight-item"><div class="hi-dot"></div><p><strong>Live performances</strong> by the CS Music Club — carols, original compositions, and communal music.</p></div>
+            <div class="highlight-item"><div class="hi-dot"></div><p><strong>First concert</strong> held specifically in honor of the children the Foundation serves.</p></div>
+            <div class="highlight-item"><div class="hi-dot"></div><p><strong>BrightNotes + HeartLink collaboration</strong> — music and presence, together in one room.</p></div>
+            <div class="highlight-item"><div class="hi-dot"></div><p><strong>A moment of belonging</strong> — reminding each child that they are not invisible.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAY UPDATED -->
+<section id="stay-updated" class="lantern-host">
+  <canvas class="lantern-canvas" data-count="20" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="su-inner reveal">
+      <p class="t-label">Stay Connected</p>
+      <span class="gold-bar" style="display:block; margin:1rem auto 1.5rem"></span>
+      <h2>More events are coming.</h2>
+      <p>Follow us on Instagram and join our LINE community to be the first to hear about upcoming performances, fundraisers, and volunteer opportunities.</p>
+      <div class="su-links">
+        <a href="https://www.instagram.com/thelanternfoundation24/" target="_blank" rel="noopener" class="btn btn-gold">Follow on Instagram</a>
+        <a href="get-involved.html" class="btn btn-outline">Get Involved</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-body">
+    <div class="foot-brand"><a href="index.html" class="foot-brand-logo"><svg width="22" height="29" viewBox="0 0 26 34" fill="none" aria-hidden="true"><path d="M9 5 Q13 1 17 5" stroke="#E8A420" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="6" y="5" width="14" height="2.5" rx="1" fill="#E8A420" opacity="0.8"/><path d="M5 8.5 L3 13 L3 24 L5 27.5 L21 27.5 L23 24 L23 13 L21 8.5 Z" fill="rgba(232,164,32,0.1)" stroke="#E8A420" stroke-width="1.3"/><ellipse cx="13" cy="18" rx="6" ry="7" fill="rgba(232,164,32,0.22)"/><rect x="8" y="27.5" width="10" height="3" rx="1.5" fill="#E8A420" opacity="0.8"/></svg><strong>The Lantern Foundation</strong></a><p>A student-founded nonprofit in Taipei empowering youth and supporting stateless children through structured, meaningful action.</p><span class="foot-brand-cn">天燈之夢 &ensp;·&ensp; Est. 2024</span></div>
+    <div class="foot-col"><h4>Navigate</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="the-problem.html">The Problem</a></li><li><a href="news-events.html">News &amp; Events</a></li><li><a href="get-involved.html">Get Involved</a></li></ul></div>
+    <div class="foot-col"><h4>Connect</h4><a class="foot-email" href="mailto:thelanternfoundation24@gmail.com">thelanternfoundation24@gmail.com</a><div class="foot-social"><a href="https://www.instagram.com/thelanternfoundation24/" target="_blank" rel="noopener">IG</a><a href="https://line.me/ti/g/LG9Eg6JZxH" target="_blank" rel="noopener">LINE</a><a href="https://www.twhhf.org/" target="_blank" rel="noopener">HHF</a></div></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 THE LANTERN FOUNDATION &ensp;·&ensp; 天燈之夢</p><p>WEBSITE BY DANIEL CHEN</p></div>
+</footer>
+
+<script src="image-slot.js"></script>
+<script src="nav.js"></script>
+<script src="interactive.js"></script>
+</body>
+</html>

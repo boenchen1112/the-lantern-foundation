@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story | The Lantern Foundation</title>
+  <meta name="description" content="The founding story of The Lantern Foundation — how a message in a group chat became a movement.">
+  <link rel="stylesheet" href="shared.css">
+  <link rel="stylesheet" href="enhance.css">
+  <style>
+    /* STORY SECTIONS */
+    .story-section { padding-block: var(--section-v); }
+    .story-section.alt { background: var(--dark-2); }
+    .story-block {
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:clamp(3rem,7vw,7rem); align-items:center;
+    }
+    .story-block.flip { }
+    .story-block.flip .story-txt { order:2; }
+    .story-block.flip .story-media { order:1; }
+    .story-phase { font-size:.64rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--gold-bright); margin-bottom:.75rem; display:block; }
+    .story-h { font-family:var(--font-serif); font-size:clamp(1.5rem,2.5vw,2.1rem); font-weight:700; line-height:1.2; color:var(--cream); margin-bottom:1.25rem; }
+    .story-p { font-size:.97rem; color:var(--text-muted); line-height:1.8; margin-bottom:1rem; }
+    .story-p em { font-style:italic; color:var(--text-light); }
+    .story-img { aspect-ratio:4/3; position:relative; overflow:hidden; }
+    .story-img image-slot { position:absolute; inset:0; width:100%; height:100%; }
+    .story-pullquote {
+      font-family:var(--font-serif); font-size:clamp(1.05rem,1.8vw,1.35rem);
+      font-style:italic; line-height:1.65; color:var(--text-light);
+      border-left:2px solid var(--gold); padding-left:1.5rem; margin-block:1.75rem;
+    }
+
+    /* TEAM */
+    #team { background:var(--cream); }
+    .team-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1.5rem; margin-top:3rem; }
+    .team-card { background:var(--cream-2); padding:0; overflow:hidden; transition:transform .25s; }
+    .team-card:hover { transform:translateY(-4px); }
+    .team-avatar { aspect-ratio:1/1; position:relative; background:var(--cream-2); overflow:hidden; }
+    .team-avatar image-slot { position:absolute; inset:0; width:100%; height:100%; }
+    .team-info { padding:1.25rem 1.25rem 1.5rem; }
+    .team-name { font-family:var(--font-serif); font-size:1.1rem; font-weight:700; color:var(--text-dark); margin-bottom:.2rem; }
+    .team-role { font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .team-bio { font-size:.85rem; color:#444; line-height:1.6; margin-top:.6rem; }
+
+    /* CTA STRIP */
+    .about-cta { background:var(--dark); border-top:1px solid var(--dark-3); padding-block:5rem; text-align:center; }
+    .about-cta h2 { font-family:var(--font-serif); font-size:clamp(1.8rem,3.5vw,3rem); font-weight:700; color:var(--cream); margin-bottom:1rem; }
+    .about-cta p { color:var(--text-muted); margin-bottom:2rem; font-size:.97rem; }
+
+    @media(max-width:900px){
+      .team-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:768px){
+      .story-block,.story-block.flip{grid-template-columns:1fr;}
+      .story-block.flip .story-txt,.story-block.flip .story-media{order:unset;}
+      .story-media.first{order:-1;}
+      .team-grid{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-wrap">
+    <a href="index.html" class="nav-logo">
+      <svg width="26" height="34" viewBox="0 0 26 34" fill="none" aria-hidden="true"><path d="M9 5 Q13 1 17 5" stroke="#E8A420" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="6" y="5" width="14" height="2.5" rx="1" fill="#E8A420" opacity="0.8"/><path d="M5 8.5 L3 13 L3 24 L5 27.5 L21 27.5 L23 24 L23 13 L21 8.5 Z" fill="rgba(232,164,32,0.1)" stroke="#E8A420" stroke-width="1.3"/><ellipse cx="13" cy="18" rx="6" ry="7" fill="rgba(232,164,32,0.22)"/><rect x="8" y="27.5" width="10" height="3" rx="1.5" fill="#E8A420" opacity="0.8"/></svg>
+      <div class="nav-logo-words"><strong>The Lantern Foundation</strong><em>天燈之夢</em></div>
+    </a>
+    <ul class="nav-items">
+      <li><a href="index.html">Home</a></li>
+      <li class="nav-dd">
+        <button class="nav-dd-btn">About Us <svg viewBox="0 0 10 10" fill="none"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="nav-dd-panel"><a href="about.html" class="current">Our Story</a><a href="about.html#team">Our Team</a></div>
+      </li>
+      <li><a href="our-work.html">Our Work</a></li>
+      <li><a href="the-problem.html">The Problem</a></li>
+      <li class="nav-dd">
+        <button class="nav-dd-btn">News &amp; Events <svg viewBox="0 0 10 10" fill="none"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+        <div class="nav-dd-panel"><a href="news-events.html">All Events</a><a href="news-events.html#hunger-game">H.U.N.G.E.R. Game</a><a href="news-events.html#love-lit">A Love-Lit Christmas</a></div>
+      </li>
+    </ul>
+    <div class="nav-end">
+      <a href="get-involved.html" class="btn btn-gold btn-sm btn-nav-cta">Get Involved</a>
+      <button class="nav-ham" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="nav-mob" role="dialog" aria-modal="true">
+  <ul class="nav-mob-list">
+    <li><a href="index.html">Home</a></li>
+    <li><span>About Us</span><ul class="nav-mob-sub"><li><a href="about.html">Our Story</a></li><li><a href="about.html#team">Our Team</a></li></ul></li>
+    <li><a href="our-work.html">Our Work</a></li><li><a href="the-problem.html">The Problem</a></li>
+    <li><span>News &amp; Events</span><ul class="nav-mob-sub"><li><a href="news-events.html">All Events</a></li></ul></li>
+    <li><a href="get-involved.html">Get Involved</a></li>
+  </ul>
+  <div class="nav-mob-footer"><a href="get-involved.html" class="btn btn-gold">Become a Volunteer</a></div>
+</div>
+
+<!-- PAGE HERO -->
+<header class="page-hero">
+  <div class="wrap">
+    <p class="t-label reveal">About Us</p>
+    <span class="gold-bar" style="margin-top:1rem" aria-hidden="true"></span>
+    <h1 class="t-h1 reveal d1" style="max-width:18ch; margin-bottom:1.25rem">Our Story</h1>
+    <p class="t-lead reveal d2" style="max-width:50ch">How a message in a three-person group chat became a network of volunteers, a structured foundation, and a sea of lanterns.</p>
+  </div>
+</header>
+
+<!-- CHAPTER NAV -->
+<nav class="chapter-nav" data-scrollspy data-offset="150" aria-label="Story chapters">
+  <div class="chapter-nav-inner">
+    <a href="#phase-01"><b>01</b> The Discovery</a>
+    <a href="#phase-02"><b>02</b> First Visits</a>
+    <a href="#phase-03"><b>03</b> The Movement Grows</a>
+    <a href="#phase-04"><b>04</b> Building the Platform</a>
+  </div>
+</nav>
+
+<!-- PHASE 1: THE MESSAGE -->
+<section id="phase-01" class="story-section" style="scroll-margin-top:calc(var(--nav-h) + 60px)">
+  <div class="wrap">
+    <div class="story-block">
+      <div class="story-txt reveal">
+        <span class="story-phase">Phase 01 &ensp;·&ensp; The Discovery</span>
+        <h2 class="story-h">A message that was impossible to ignore.</h2>
+        <p class="story-p">Our story began with a message in a three-person group chat: <em>"50 undocumented immigrant babies hidden in the mountains like refugees."</em></p>
+        <p class="story-p">Reading further, what we discovered was difficult to ignore. Across Taiwan, children born to undocumented migrant workers were growing up without legal identity, healthcare access, or stable education. Their lives were shaped not by a single crisis, but by prolonged uncertainty. That realization unsettled us.</p>
+        <p class="story-p">We didn't know what to do. But we knew we couldn't simply move on.</p>
+      </div>
+      <div class="story-img story-media first reveal d2">
+        <image-slot id="about-img-1" shape="rect" placeholder="Early discovery / group chat moment photo"></image-slot>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 2: THE VISITS -->
+<section id="phase-02" class="story-section alt" style="scroll-margin-top:calc(var(--nav-h) + 60px)">
+  <div class="wrap">
+    <div class="story-block flip">
+      <div class="story-txt reveal">
+        <span class="story-phase">Phase 02 &ensp;·&ensp; The First Visits</span>
+        <h2 class="story-h">Music became our first bridge.</h2>
+        <p class="story-p">We began visiting a nearby children's home mentioned in the article. What started as one visit gradually became consistent involvement. We read with the children, played music, and simply stayed.</p>
+        <blockquote class="story-pullquote">"A guitar. A shared rhythm. A moment of laughter."</blockquote>
+        <p class="story-p">In those early days, we discovered something powerful — music brought light back into the room. It dissolved barriers that words couldn't. Music became our first bridge.</p>
+      </div>
+      <div class="story-img story-media reveal d2">
+        <image-slot id="about-img-2" shape="rect" placeholder="Children's home visit, music session photo"></image-slot>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 3: THE CONCERT -->
+<section id="phase-03" class="story-section" style="scroll-margin-top:calc(var(--nav-h) + 60px)">
+  <div class="wrap">
+    <div class="story-block">
+      <div class="story-txt reveal">
+        <span class="story-phase">Phase 03 &ensp;·&ensp; The Movement Grows</span>
+        <h2 class="story-h">A small gathering became something bigger.</h2>
+        <p class="story-p">We organized our first student-led fundraising concert. What began as a small gathering of friends grew into a structured volunteer system. More students joined — not because they had experience, but because they cared.</p>
+        <p class="story-p">We also understood something deeper. These children lacked stable medical care. Without nationality, they were excluded from Taiwan's national health insurance system: an illness could become financially devastating for a family already living without legal protection.</p>
+      </div>
+      <div class="story-img story-media reveal d2">
+        <image-slot id="about-img-3" shape="rect" placeholder="First fundraising concert photo"></image-slot>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASE 4: BUILDING THE FOUNDATION -->
+<section id="phase-04" class="story-section alt" style="scroll-margin-top:calc(var(--nav-h) + 60px)">
+  <div class="wrap">
+    <div class="story-block flip">
+      <div class="story-txt reveal">
+        <span class="story-phase">Phase 04 &ensp;·&ensp; Building the Platform</span>
+        <h2 class="story-h">So we chose to build one.</h2>
+        <p class="story-p">Many students wanted to help, but felt they were <em>"just students"</em> — lacking the guidance, structure, and platform to turn intention into action.</p>
+        <p class="story-p">The Lantern Foundation was created not only to support children, but so that students can step into responsibility and transform concern into commitment.</p>
+        <p class="story-p">Today, a network of volunteers across schools continues to stand alongside children through care and advocacy — while building a system where young people learn to lead through action.</p>
+        <div style="margin-top:2rem"><a href="our-work.html" class="btn btn-outline-gold">See Our Three Branches</a></div>
+      </div>
+      <div class="story-img story-media reveal d2">
+        <image-slot id="about-img-4" shape="rect" placeholder="Volunteer team or foundation building photo"></image-slot>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT BAND -->
+<section class="impact-band" style="padding:0">
+  <image-slot id="about-impact" shape="rect" placeholder="Wide photo — the team together, or a community moment"></image-slot>
+  <div class="impact-overlay"></div>
+  <div class="impact-content reveal">
+    <p class="t-label">From Three to Many</p>
+    <h2>What began in a group chat now spans schools across Taipei.</h2>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="bg-cream on-cream" style="padding-block:var(--section-v)">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="t-label">Our Team</p>
+      <span class="gold-bar" style="margin-top:1rem"></span>
+      <h2 class="t-h2" style="margin-bottom:.75rem">The people behind the lanterns.</h2>
+      <p style="color:#2C2218; font-size:.97rem; max-width:55ch; margin-bottom:0">Driven by empathy, structured by commitment — our team is built from students who believe that concern must become action.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar"><image-slot id="team-alvin" shape="rect" placeholder="Alvin Chen photo"></image-slot></div>
+        <div class="team-info">
+          <p class="team-name">Alvin Chen</p>
+          <p class="team-role">Co-Founder</p>
+          <p class="team-bio">"A steady presence is the most powerful tool we have for healing."</p>
+        </div>
+      </div>
+      <div class="team-card reveal d1">
+        <div class="team-avatar"><image-slot id="team-2" shape="rect" placeholder="Co-founder photo"></image-slot></div>
+        <div class="team-info">
+          <p class="team-name">Co-Founder</p>
+          <p class="team-role">Co-Founder</p>
+          <p class="team-bio">Add team member details here.</p>
+        </div>
+      </div>
+      <div class="team-card reveal d2">
+        <div class="team-avatar"><image-slot id="team-3" shape="rect" placeholder="Team member photo"></image-slot></div>
+        <div class="team-info">
+          <p class="team-name">Team Member</p>
+          <p class="team-role">BrightNotes Lead</p>
+          <p class="team-bio">Add team member details here.</p>
+        </div>
+      </div>
+      <div class="team-card reveal d3">
+        <div class="team-avatar"><image-slot id="team-4" shape="rect" placeholder="Team member photo"></image-slot></div>
+        <div class="team-info">
+          <p class="team-name">Team Member</p>
+          <p class="team-role">HeartLink Lead</p>
+          <p class="team-bio">Add team member details here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="about-cta lantern-host">
+  <canvas class="lantern-canvas" data-count="20" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <h2 class="reveal">Ready to be a lantern?</h2>
+    <p class="reveal d1">Join a community of students turning concern into commitment.</p>
+    <div class="reveal d2" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="get-involved.html" class="btn btn-gold">Get Involved</a>
+      <a href="our-work.html" class="btn btn-outline">Our Work</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-body">
+    <div class="foot-brand">
+      <a href="index.html" class="foot-brand-logo"><svg width="22" height="29" viewBox="0 0 26 34" fill="none" aria-hidden="true"><path d="M9 5 Q13 1 17 5" stroke="#E8A420" stroke-width="1.5" fill="none" stroke-linecap="round"/><rect x="6" y="5" width="14" height="2.5" rx="1" fill="#E8A420" opacity="0.8"/><path d="M5 8.5 L3 13 L3 24 L5 27.5 L21 27.5 L23 24 L23 13 L21 8.5 Z" fill="rgba(232,164,32,0.1)" stroke="#E8A420" stroke-width="1.3"/><ellipse cx="13" cy="18" rx="6" ry="7" fill="rgba(232,164,32,0.22)"/><rect x="8" y="27.5" width="10" height="3" rx="1.5" fill="#E8A420" opacity="0.8"/></svg><strong>The Lantern Foundation</strong></a>
+      <p>A student-founded nonprofit in Taipei empowering youth and supporting stateless children through structured, meaningful action.</p>
+      <span class="foot-brand-cn">天燈之夢 &ensp;·&ensp; Est. 2024</span>
+    </div>
+    <div class="foot-col"><h4>Navigate</h4><ul><li><a href="about.html">Our Story</a></li><li><a href="our-work.html">Our Work</a></li><li><a href="the-problem.html">The Problem</a></li><li><a href="news-events.html">News &amp; Events</a></li><li><a href="get-involved.html">Get Involved</a></li></ul></div>
+    <div class="foot-col"><h4>Connect</h4><a class="foot-email" href="mailto:thelanternfoundation24@gmail.com">thelanternfoundation24@gmail.com</a><div class="foot-social"><a href="https://www.instagram.com/thelanternfoundation24/" target="_blank" rel="noopener">IG</a><a href="https://line.me/ti/g/LG9Eg6JZxH" target="_blank" rel="noopener">LINE</a><a href="https://www.twhhf.org/" target="_blank" rel="noopener">HHF</a></div></div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 THE LANTERN FOUNDATION &ensp;·&ensp; 天燈之夢</p><p>WEBSITE BY DANIEL CHEN</p></div>
+</footer>
+
+<script src="image-slot.js"></script>
+<script src="nav.js"></script>
+<script src="interactive.js"></script>
+</body>
+</html>

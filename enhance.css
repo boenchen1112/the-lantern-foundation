@@ -1,0 +1,185 @@
+/* ============================================================
+   THE LANTERN FOUNDATION · enhance.css
+   Interactive & dynamic visual layer (loaded after shared.css)
+   ============================================================ */
+
+/* ---- SCROLL PROGRESS BAR ---- */
+.scroll-progress {
+  position: fixed;
+  inset-block-start: 0; inset-inline-start: 0;
+  height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-pale));
+  z-index: 250; pointer-events: none;
+  transition: width .08s linear;
+  box-shadow: 0 0 12px rgba(232,164,32,.5);
+}
+
+/* ---- CURSOR-FOLLOW CARD GLOW ---- */
+[data-glow] { position: relative; isolation: isolate; }
+[data-glow]::after {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  pointer-events: none; opacity: 0; transition: opacity .35s;
+  background: radial-gradient(320px circle at var(--mx,50%) var(--my,50%),
+              rgba(232,164,32,.13), transparent 65%);
+}
+[data-glow]:hover::after { opacity: 1; }
+[data-glow] > * { position: relative; z-index: 1; }
+
+/* ---- MAGNETIC / LIFT BUTTONS ---- */
+.btn[data-magnetic] { will-change: transform; }
+
+/* ---- IMPACT BAND (full-bleed image strip) ---- */
+.impact-band {
+  position: relative; overflow: hidden;
+  min-height: clamp(340px, 52vw, 560px);
+  display: flex; align-items: flex-end;
+  padding: 0;
+}
+.impact-band image-slot {
+  position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0;
+}
+.impact-band .impact-overlay {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(11,10,8,.30) 0%, rgba(11,10,8,.10) 40%, rgba(11,10,8,.92) 100%);
+}
+.impact-band .impact-content {
+  position: relative; z-index: 2;
+  max-width: var(--container); margin-inline: auto; width: 100%;
+  padding: var(--gap); padding-block-end: clamp(2.5rem, 5vw, 4rem);
+}
+.impact-band .impact-content h2 {
+  font-family: var(--font-serif); font-weight: 700; color: var(--cream);
+  font-size: clamp(1.8rem, 4vw, 3.4rem); line-height: 1.1; max-width: 18ch;
+  text-shadow: 0 2px 30px rgba(0,0,0,.5);
+}
+.impact-band .impact-content p {
+  color: var(--text-light); font-size: clamp(.95rem,1.5vw,1.1rem);
+  max-width: 46ch; margin-top: 1rem; text-shadow: 0 2px 20px rgba(0,0,0,.6);
+}
+
+/* ---- BRANCH CARD IMAGE TOP ---- */
+.branch-card-img {
+  aspect-ratio: 16/10; position: relative; overflow: hidden;
+  margin: calc(-1 * clamp(2rem,4vw,3rem)) calc(-1 * clamp(2rem,4vw,3rem)) .4rem;
+}
+.branch-card-img image-slot { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* ---- MARQUEE TICKER ---- */
+.marquee {
+  background: var(--gold-bright); color: var(--dark);
+  overflow: hidden; padding-block: .9rem; position: relative;
+  border-block: 1px solid var(--gold);
+}
+.marquee-track {
+  display: flex; gap: 0; width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-track span {
+  font-family: var(--font-serif); font-size: clamp(1rem,1.6vw,1.35rem);
+  font-weight: 700; font-style: italic; white-space: nowrap;
+  padding-inline: 1.6rem; display: inline-flex; align-items: center;
+}
+.marquee-track span::after {
+  content: '✦'; font-style: normal; font-size: .7em;
+  margin-inline-start: 3.2rem; opacity: .55;
+}
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ---- CHAPTER / PHASE STICKY NAV (About) ---- */
+.chapter-nav {
+  position: sticky; top: var(--nav-h); z-index: 100;
+  background: rgba(11,10,8,.97); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--dark-3);
+}
+.chapter-nav-inner {
+  display: flex; gap: 0; max-width: var(--container);
+  margin-inline: auto; padding-inline: var(--gap); overflow-x: auto;
+}
+.chapter-nav a {
+  display: flex; align-items: center; gap: .6rem;
+  font-size: .78rem; font-weight: 600; letter-spacing: .06em;
+  color: var(--text-muted); text-decoration: none; padding: 1.05rem 1.4rem;
+  border-bottom: 2px solid transparent; white-space: nowrap;
+  transition: color .2s, border-color .2s;
+}
+.chapter-nav a b {
+  font-family: var(--font-serif); font-size: .95rem; color: var(--gold);
+  transition: color .2s;
+}
+.chapter-nav a:hover { color: var(--cream); }
+.chapter-nav a.active { color: var(--gold-bright); border-bottom-color: var(--gold-bright); }
+.chapter-nav a.active b { color: var(--gold-bright); }
+
+/* ---- LANTERN CANVAS (reusable bg) ---- */
+.lantern-host { position: relative; }
+.lantern-canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+}
+.lantern-host > .wrap, .lantern-host > .impact-content { position: relative; z-index: 2; }
+
+/* ---- GALLERY EXPAND / LIGHTBOX TRIGGER ---- */
+.lb-wrap { position: relative; }
+.lb-btn {
+  position: absolute; top: .55rem; right: .55rem; z-index: 5;
+  width: 32px; height: 32px; border: none; cursor: pointer;
+  background: rgba(11,10,8,.72); color: var(--gold-bright);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: scale(.85); transition: opacity .2s, transform .2s, background .2s;
+  backdrop-filter: blur(4px);
+}
+.lb-wrap:hover .lb-btn { opacity: 1; transform: scale(1); }
+.lb-btn:hover { background: var(--gold-bright); color: var(--dark); }
+/* hide when the slot has no image yet */
+.lb-wrap image-slot:not([data-filled]) ~ .lb-btn { display: none; }
+
+/* ---- LIGHTBOX OVERLAY ---- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 500;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(8,7,5,.94); backdrop-filter: blur(8px);
+  opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
+  padding: clamp(1.5rem, 5vw, 4rem);
+}
+.lightbox.open { opacity: 1; visibility: visible; }
+.lightbox img {
+  max-width: 100%; max-height: 100%; object-fit: contain;
+  box-shadow: 0 30px 90px rgba(0,0,0,.6);
+  transform: scale(.96); transition: transform .3s;
+}
+.lightbox.open img { transform: scale(1); }
+.lb-close {
+  position: absolute; top: 1.5rem; right: 1.5rem;
+  width: 46px; height: 46px; border: 1px solid rgba(224,212,187,.3);
+  background: transparent; color: var(--cream); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s; z-index: 2;
+}
+.lb-close:hover { background: rgba(224,212,187,.1); border-color: var(--cream); }
+.lb-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 52px; height: 52px; border: 1px solid rgba(224,212,187,.25);
+  background: rgba(11,10,8,.5); color: var(--cream); cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, border-color .2s; z-index: 2;
+}
+.lb-arrow:hover { background: var(--gold-bright); color: var(--dark); border-color: var(--gold-bright); }
+.lb-prev { left: 1.5rem; } .lb-next { right: 1.5rem; }
+.lb-arrow.hidden { display: none; }
+.lb-count {
+  position: absolute; bottom: 1.75rem; left: 50%; transform: translateX(-50%);
+  font-size: .8rem; letter-spacing: .14em; color: var(--text-muted); z-index: 2;
+}
+
+/* ---- PARALLAX ---- */
+[data-parallax] { will-change: transform; }
+
+@media (max-width: 768px) {
+  .lb-arrow { width: 42px; height: 42px; }
+  .lb-prev { left: .5rem; } .lb-next { right: .5rem; }
+  .branch-card-img { margin-inline: calc(-1 * clamp(2rem,4vw,2.75rem)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
