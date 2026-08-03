@@ -67,13 +67,9 @@
     .form-submit:hover { background: var(--gold-pale); transform: translateY(-1px); }
     .form-submit:active { transform: none; }
 
-    /* THANK YOU STATE */
-    .thankyou-state { display: none; text-align: center; padding: 3rem 2rem; }
-    .thankyou-state.visible { display: block; }
-    .vol-form.submitted .form-inner { display: none; }
-    .thankyou-icon { width: 56px; height: 56px; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
-    .thankyou-title { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 700; color: var(--cream); margin-bottom: .75rem; }
-    .thankyou-sub { font-size: .95rem; color: var(--text-muted); line-height: 1.7; }
+    /* EMBEDDED GOOGLE FORM — fills the same column the custom form used to occupy */
+    .gform-embed { width: 100%; background: var(--dark-3); }
+    .gform-embed iframe { display: block; width: 100%; height: clamp(480px, 55vw, 640px); border: 0; }
 
     /* CONTACT */
     #contact { background: var(--dark-2); border-top: 1px solid var(--dark-3); }
@@ -103,7 +99,7 @@
     </a>
     <ul class="nav-items">
       <li><a href="index.html">Home</a></li>
-      <li class="nav-dd"><button class="nav-dd-btn">About Us <svg viewBox="0 0 10 10" fill="none"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="nav-dd-panel"><a href="about.html">Our Story</a><a href="about.html#team">Our Team</a></div></li>
+      <li class="nav-dd"><button class="nav-dd-btn">About Us <svg viewBox="0 0 10 10" fill="none"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="nav-dd-panel"><a href="about.html">Our Story</a><a href="about.html#team">Our Team</a><a href="about.html#partners">Our Partners</a></div></li>
       <li><a href="our-work.html">Our Work</a></li>
       <li><a href="the-problem.html">The Problem</a></li>
       <li class="nav-dd"><button class="nav-dd-btn">News &amp; Events <svg viewBox="0 0 10 10" fill="none"><path d="M1 3l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="nav-dd-panel"><a href="news-events.html">All Events</a><a href="news-events.html#hunger-game">H.U.N.G.E.R. Game</a><a href="news-events.html#love-lit">A Love-Lit Christmas</a></div></li>
@@ -117,7 +113,7 @@
 <div class="nav-mob" role="dialog" aria-modal="true">
   <ul class="nav-mob-list">
     <li><a href="index.html">Home</a></li>
-    <li><span>About Us</span><ul class="nav-mob-sub"><li><a href="about.html">Our Story</a></li><li><a href="about.html#team">Our Team</a></li></ul></li>
+    <li><span>About Us</span><ul class="nav-mob-sub"><li><a href="about.html">Our Story</a></li><li><a href="about.html#team">Our Team</a></li><li><a href="about.html#partners">Our Partners</a></li></ul></li>
     <li><a href="our-work.html">Our Work</a></li><li><a href="the-problem.html">The Problem</a></li>
     <li><a href="news-events.html">News &amp; Events</a></li><li><a href="get-involved.html">Get Involved</a></li>
   </ul>
@@ -171,7 +167,7 @@
 
 <!-- IMPACT BAND -->
 <section class="impact-band" style="padding:0">
-  <image-slot id="involved-impact" shape="rect" placeholder="Wide photo — volunteers in action, a concert, or a group shot"></image-slot>
+  <image-slot id="involved-impact" shape="rect" src="assets/images/general/BrightNotes/BrightNotes%20(4).jpg" placeholder="Wide photo — volunteers in action, a concert, or a group shot"></image-slot>
   <div class="impact-overlay"></div>
   <div class="impact-content reveal">
     <p class="t-label">You + Us</p>
@@ -201,53 +197,9 @@
         <div class="form-inner">
           <p class="form-title">Volunteer Application</p>
           <p class="form-sub">Fill in your details and we'll be in touch.</p>
-          <form id="vol-form" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="f-name">Full Name *</label>
-                <input class="form-input" id="f-name" type="text" placeholder="Your name" required>
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="f-email">Email *</label>
-                <input class="form-input" id="f-email" type="email" placeholder="your@email.com" required>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="f-school">School / Organisation</label>
-                <input class="form-input" id="f-school" type="text" placeholder="e.g. Chingshin Academy">
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="f-branch">Primary Interest *</label>
-                <select class="form-select" id="f-branch" required>
-                  <option value="" disabled selected>Select a branch</option>
-                  <option value="brightnotes">BrightNotes — Music &amp; Events</option>
-                  <option value="lightaid">LightAid — Healthcare Funding</option>
-                  <option value="heartlink">HeartLink — Companionship Visits</option>
-                  <option value="all">Open to All Branches</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label">I am interested in</label>
-              <div class="form-checks">
-                <label class="form-check"><input type="checkbox" name="interest" value="volunteer"><span>Volunteering directly</span></label>
-                <label class="form-check"><input type="checkbox" name="interest" value="skills"><span>Contributing a specific skill (music, design, finance, etc.)</span></label>
-                <label class="form-check"><input type="checkbox" name="interest" value="corporate"><span>Corporate sponsorship / partnership</span></label>
-                <label class="form-check"><input type="checkbox" name="interest" value="collab"><span>Collaboration between organisations</span></label>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="f-msg">Why do you want to get involved? *</label>
-              <textarea class="form-textarea" id="f-msg" placeholder="Tell us a little about yourself and why this matters to you..." required></textarea>
-            </div>
-            <button type="submit" class="form-submit">Submit Application →</button>
-          </form>
-        </div>
-        <div class="thankyou-state" id="thankyou">
-          <div class="thankyou-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold-bright)" stroke-width="1.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-          <p class="thankyou-title">Application received.</p>
-          <p class="thankyou-sub">Thank you for stepping forward. We will review your application and reach out within 5 business days.<br><br>In the meantime, follow us on Instagram for updates.</p>
+          <div class="gform-embed">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeD4r3KIO09ZbKGB4ANFoMtQX8xOBi1e_6g6gs09stkqlA3EQ/viewform?embedded=true" title="Volunteer Application Form" loading="lazy">Loading…</iframe>
+          </div>
         </div>
       </div>
     </div>
@@ -295,21 +247,5 @@
 <script src="assets/js/image-slot.js"></script>
 <script src="assets/js/nav.js"></script>
 <script src="assets/js/interactive.js"></script>
-<script>
-document.getElementById('vol-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  var name = document.getElementById('f-name').value.trim();
-  var email = document.getElementById('f-email').value.trim();
-  var branch = document.getElementById('f-branch').value;
-  var msg = document.getElementById('f-msg').value.trim();
-  if (!name || !email || !branch || !msg) {
-    alert('Please fill in all required fields.');
-    return;
-  }
-  var wrap = document.getElementById('vol-form-wrap');
-  wrap.classList.add('submitted');
-  document.getElementById('thankyou').classList.add('visible');
-});
-</script>
 </body>
 </html>

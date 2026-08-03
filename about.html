@@ -24,6 +24,9 @@
     .story-p em { font-style:italic; color:var(--text-light); }
     .story-img { aspect-ratio:4/3; position:relative; overflow:hidden; }
     .story-img image-slot { position:absolute; inset:0; width:100%; height:100%; }
+    .story-img-caption { font-size:.8rem; color:var(--text-dim); margin-top:.85rem; }
+    .story-img-caption a { color:var(--gold-bright); text-decoration:none; }
+    .story-img-caption a:hover { text-decoration:underline; }
     .story-pullquote {
       font-family:var(--font-serif); font-size:clamp(1.05rem,1.8vw,1.35rem);
       font-style:italic; line-height:1.65; color:var(--text-light);
@@ -42,6 +45,30 @@
     .team-role { font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
     .team-bio { font-size:.85rem; color:#444; line-height:1.6; margin-top:.6rem; }
 
+    /* PARTNERS */
+    #partners { background:var(--dark-2); }
+    .partner-card {
+      display:grid; grid-template-columns:200px 1fr; gap:clamp(2rem,4vw,3.5rem);
+      align-items:start; padding-block:clamp(2.25rem,4.5vw,3.5rem);
+      border-bottom:1px solid var(--dark-3);
+    }
+    .partner-card:last-child { border-bottom:none; }
+    .partner-logo {
+      width:100%; min-height:120px; background:var(--cream);
+      display:flex; align-items:center; justify-content:center; padding:1.25rem;
+    }
+    .partner-logo img { width:100%; height:100%; max-height:160px; object-fit:contain; }
+    .partner-type { font-size:.68rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold-bright); margin-bottom:.6rem; display:block; }
+    .partner-name { font-family:var(--font-serif); font-size:clamp(1.3rem,2.2vw,1.7rem); font-weight:700; color:var(--cream); line-height:1.2; margin-bottom:1rem; }
+    .partner-body p { font-size:.94rem; color:var(--text-muted); line-height:1.8; margin-bottom:1rem; }
+    .partner-body p:last-child { margin-bottom:0; }
+    .partner-body p strong { color:var(--text-light); font-weight:600; }
+    .partner-link { margin-top:1.25rem; }
+    .partners-empty {
+      padding:clamp(2.5rem,5vw,4rem); text-align:center;
+      border:1px dashed var(--dark-3); color:var(--text-muted); font-size:.95rem; line-height:1.7;
+    }
+
     /* CTA STRIP */
     .about-cta { background:var(--dark); border-top:1px solid var(--dark-3); padding-block:5rem; text-align:center; }
     .about-cta h2 { font-family:var(--font-serif); font-size:clamp(1.8rem,3.5vw,3rem); font-weight:700; color:var(--cream); margin-bottom:1rem; }
@@ -49,6 +76,10 @@
 
     @media(max-width:900px){
       .team-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:600px){
+      .partner-card{grid-template-columns:1fr;}
+      .partner-logo{max-width:140px;}
     }
     @media(max-width:768px){
       .story-block,.story-block.flip{grid-template-columns:1fr;}
@@ -88,7 +119,7 @@
 <div class="nav-mob" role="dialog" aria-modal="true">
   <ul class="nav-mob-list">
     <li><a href="index.html">Home</a></li>
-    <li><span>About Us</span><ul class="nav-mob-sub"><li><a href="about.html">Our Story</a></li><li><a href="about.html#team">Our Team</a></li></ul></li>
+    <li><span>About Us</span><ul class="nav-mob-sub"><li><a href="about.html">Our Story</a></li><li><a href="about.html#team">Our Team</a></li><li><a href="about.html#partners">Our Partners</a></li></ul></li>
     <li><a href="our-work.html">Our Work</a></li><li><a href="the-problem.html">The Problem</a></li>
     <li><span>News &amp; Events</span><ul class="nav-mob-sub"><li><a href="news-events.html">All Events</a></li></ul></li>
     <li><a href="get-involved.html">Get Involved</a></li>
@@ -106,6 +137,8 @@
   </div>
 </header>
 
+<!-- STORY CHAPTERS (wrapped so the sticky chapter-nav un-sticks once the phases end) -->
+<div class="story-chapters">
 <!-- CHAPTER NAV -->
 <nav class="chapter-nav" data-scrollspy data-offset="150" aria-label="Story chapters">
   <div class="chapter-nav-inner">
@@ -127,8 +160,11 @@
         <p class="story-p">Reading further, what we discovered was difficult to ignore. Across Taiwan, children born to undocumented migrant workers were growing up without legal identity, healthcare access, or stable education. Their lives were shaped not by a single crisis, but by prolonged uncertainty. That realization unsettled us.</p>
         <p class="story-p">We didn't know what to do. But we knew we couldn't simply move on.</p>
       </div>
-      <div class="story-img story-media first reveal d2">
-        <image-slot id="about-img-1" shape="rect" placeholder="Early discovery / group chat moment photo"></image-slot>
+      <div class="story-media first reveal d2">
+        <div class="story-img">
+          <image-slot id="about-img-1" shape="rect" src="assets/images/general/general/Harmony%20Home%20Association%20in%20Taipei.jpg" placeholder="Early discovery / group chat moment photo"></image-slot>
+        </div>
+        <p class="story-img-caption">📺 <a href="https://www.youtube.com/watch?v=nOEjDhlzmZ8&amp;t=229s" target="_blank" rel="noopener">Watch: PTS In-News Issue No. 524 — "The Home of the Dandelion Kids"</a></p>
       </div>
     </div>
   </div>
@@ -146,7 +182,7 @@
         <p class="story-p">In those early days, we discovered something powerful — music brought light back into the room. It dissolved barriers that words couldn't. Music became our first bridge.</p>
       </div>
       <div class="story-img story-media reveal d2">
-        <image-slot id="about-img-2" shape="rect" placeholder="Children's home visit, music session photo"></image-slot>
+        <image-slot id="about-img-2" shape="rect" src="assets/images/general/general/Music.jpg" placeholder="Children's home visit, music session photo"></image-slot>
       </div>
     </div>
   </div>
@@ -163,7 +199,7 @@
         <p class="story-p">We also understood something deeper. These children lacked stable medical care. Without nationality, they were excluded from Taiwan's national health insurance system: an illness could become financially devastating for a family already living without legal protection.</p>
       </div>
       <div class="story-img story-media reveal d2">
-        <image-slot id="about-img-3" shape="rect" placeholder="First fundraising concert photo"></image-slot>
+        <image-slot id="about-img-3" shape="rect" src="assets/images/general/BrightNotes/BrightNotes%20(3).jpg" placeholder="First fundraising concert photo"></image-slot>
       </div>
     </div>
   </div>
@@ -182,15 +218,17 @@
         <div style="margin-top:2rem"><a href="our-work.html" class="btn btn-outline-gold">See Our Three Branches</a></div>
       </div>
       <div class="story-img story-media reveal d2">
-        <image-slot id="about-img-4" shape="rect" placeholder="Volunteer team or foundation building photo"></image-slot>
+        <image-slot id="about-img-4" shape="rect" src="assets/images/general/HeartLink/260118%20(7).jpg" placeholder="Volunteer team or foundation building photo"></image-slot>
       </div>
     </div>
   </div>
 </section>
+</div>
+<!-- /STORY CHAPTERS -->
 
 <!-- IMPACT BAND -->
 <section class="impact-band" style="padding:0">
-  <image-slot id="about-impact" shape="rect" placeholder="Wide photo — the team together, or a community moment"></image-slot>
+  <image-slot id="about-impact" shape="rect" src="assets/images/general/BrightNotes/BrightNotes%20(2).jpg" placeholder="Wide photo — the team together, or a community moment"></image-slot>
   <div class="impact-overlay"></div>
   <div class="impact-content reveal">
     <p class="t-label">From Three to Many</p>
@@ -308,6 +346,66 @@
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners" style="padding-block:var(--section-v)">
+  <div class="wrap">
+    <div class="reveal" style="margin-bottom:clamp(2.5rem,5vw,4rem)">
+      <p class="t-label">Who We Work With</p>
+      <span class="gold-bar" style="margin-top:1rem"></span>
+      <h2 class="t-h2" style="margin-bottom:.75rem">Our Partners.</h2>
+      <p style="color:var(--text-muted); font-size:.97rem; max-width:55ch; margin-bottom:0">We don't work alone. Institutions and schools stand alongside us, lending the trust, access, and resources that let our branches reach further.</p>
+    </div>
+
+    <!-- PARTNER CATEGORY NAV -->
+    <nav class="chapter-nav" data-scrollspy data-offset="150" aria-label="Partner categories" style="margin-bottom:0">
+      <div class="chapter-nav-inner">
+        <a href="#partner-institutions"><b>01</b> Institutions</a>
+        <a href="#partner-schools"><b>02</b> Schools</a>
+      </div>
+    </nav>
+
+    <!-- 01 INSTITUTIONS -->
+    <div id="partner-institutions" style="scroll-margin-top:calc(var(--nav-h) + 60px); padding-top:1rem">
+      <div class="partner-card reveal">
+        <div class="partner-logo"><img src="assets/images/general/Logos/Harmony_Home_logo.png" alt="Harmony Home Foundation Taiwan logo"></div>
+        <div class="partner-body">
+          <span class="partner-type">Institution</span>
+          <h3 class="partner-name">Harmony Home</h3>
+          <p>Our volunteer team visits every weekend: 4 sessions a week, each 1.5 to 2 hours, offering children a caring presence through companionship, interaction, and music.</p>
+          <p>Beyond direct service, we pitch to institutions and organize public events to raise funds and awareness. Activities are planned in coordination with Harmony Home to align with their needs.</p>
+          <p>Through these collaborative efforts, we have raised over <strong>NTD 100,000</strong> — all proceeds toward supporting the children at Harmony Home.</p>
+          <div class="partner-link"><a href="https://www.twhhf.org/" target="_blank" rel="noopener" class="btn btn-outline-gold btn-sm">Visit Harmony Home →</a></div>
+        </div>
+      </div>
+      <div class="partner-card reveal d1">
+        <div class="partner-logo"><img src="assets/images/general/Logos/GQIEA_logo.png" alt="Global Quality International Education Association logo"></div>
+        <div class="partner-body">
+          <span class="partner-type">Institution</span>
+          <h3 class="partner-name">Global Quality International Education Association</h3>
+          <p>The Global Quality International Education Association is a registered nonprofit whose core mission is cultivating the next generation's global perspective and sense of global citizenship — equipping students with the ability to understand, communicate, and act within a complex world.</p>
+          <p>The Association builds its educational system on three pillars: <strong>internationalized curriculum and teaching</strong>, <strong>cross-cultural experience and exchange</strong>, and <strong>global citizenship education and values development</strong>. Beyond weaving subjects like international politics, the global economy, and environmental science into its teaching, it offers international exchanges, overseas internships, and volunteer service so students can practice cross-cultural collaboration firsthand.</p>
+          <p>By deepening students' understanding of ethics, social responsibility, and human rights protection, the Association encourages attention to sustainable development and social justice — cultivating well-rounded international talent with global competitiveness, inclusivity, and a strong sense of responsibility.</p>
+          <div class="partner-link"><a href="https://www.springpond.org/" target="_blank" rel="noopener" class="btn btn-outline-gold btn-sm">Visit GQIEA →</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 SCHOOLS -->
+    <div id="partner-schools" style="scroll-margin-top:calc(var(--nav-h) + 60px); padding-top:1rem">
+      <div class="partner-card reveal">
+        <div class="partner-logo"><img src="assets/images/general/Logos/AAIA_logo.jpg" alt="Asian American International Academy logo"></div>
+        <div class="partner-body">
+          <span class="partner-type">School</span>
+          <h3 class="partner-name">Asian American International Academy (AAIA)</h3>
+          <p>Each weekend, student volunteers from the Asian American International Academy (AAIA) step outside their classrooms and into the community to support the mission of the Lantern Foundation. Standing in public spaces, they share the stories and purpose behind Lantern Foundation's work, inviting passersby to become part of something larger than themselves.</p>
+          <p>Through these efforts, students raise funds that directly support the charities and partner organizations the Lantern Foundation collaborates with. Every contribution collected not only represents financial support, but also reflects a growing network of people who believe that young individuals can take meaningful action to help others.</p>
+          <p>By participating in these fundraising activities, students learn how to communicate a cause, build trust with the public, and transform small acts of generosity into real impact.</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
